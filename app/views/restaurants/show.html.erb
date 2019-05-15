@@ -1,0 +1,26 @@
+<h1><%= @restaurant.name %></h1>
+
+<h4>Come and enjoy great <%= @restaurant.category.capitalize %> food!</h4>
+
+<div class="details">
+  <p><strong>Find us at:</strong> <%= @restaurant.address %></p>
+  <p><strong>Call us:</strong> <%= @restaurant.phone_number %></p>
+</div>
+
+<h3 class="reviews-h3" id="reviews">What our customers say about us:</h3>
+
+<div class="reviews-container">
+  <ul class="reviews">
+    <% @restaurant.reviews.each do |review| %>
+      <li id="<%= review.id %>">
+        <% review.rating.times do %>
+          <i class="fas fa-star yellow"></i>
+        <% end %>
+        <br>
+        <%= review.content %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= render "reviews/form" %>
+</div>
