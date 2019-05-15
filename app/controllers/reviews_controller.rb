@@ -4,9 +4,12 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(params_permit)
     @review.restaurant = @restaurant
-    @review.save
 
-    redirect_to restaurant_path(@restaurant) + "##{@review.id}"
+    if @review.save
+      redirect_to restaurant_path(@restaurant) + "##{@review.id}"
+    else
+      redirect_to restaurant_path(@restaurant)
+    end
   end
 
   private
